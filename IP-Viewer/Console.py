@@ -1,12 +1,12 @@
 
 #Console.py script for PyS60
 
+import os
 import sys
 import e32
 import appuifw
 ru = lambda text, : text.decode('utf-8', 'ignore') 
-class Console :
-
+class Console():
 
     __module__ = __name__
     def __init__(self, logger = False):
@@ -29,18 +29,14 @@ class Console :
         self._flushgate = self.clear()
         if self.logger : 
 
-
             def make_flusher(text, buf):
-
 
                 def doflush():
                     text.set_pos(text.len())
                     text.add(ru(''.join(buf)))
                     del buf[:]
 
-
                 return doflush
-
 
             self._doflush = make_flusher(self.text, self.writebuf)
             self._flushgate = e32.ao_callgate(self._doflush)
@@ -49,9 +45,6 @@ class Console :
             self.clear()
         return None
 
-
-
-
     def __del__(self):
         sys.stderr = self.savestderr
         sys.stdout = self.savestdout
@@ -59,34 +52,19 @@ class Console :
         self.control = self.text = None
         return None
 
-
-
-
     def stop_input(self):
         self.input_stopped = True
         self.input_wait_lock.signal()
 
-
-
-
     def clear(self):
         self.text.clear()
-
-
-
 
     def write(self, obj):
         self.writebuf.append(obj)
         self.flush()
 
-
-
-
     def writelines(self, list):
         self.write(''.join(list))
-
-
-
 
     def flush(self):
         if len(self.writebuf) > 0 : 
@@ -95,9 +73,6 @@ class Console :
             else : 
                 self._flushgate()
             pass
-
-
-
 
     def readline(self):
         if  not (e32.is_ui_thread()) : 
