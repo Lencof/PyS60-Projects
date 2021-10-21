@@ -1,9 +1,6 @@
 # py pastebin  v1.00.1 script by gauravssnl for symbian OS
 # pys60 v2.0 script 
-import appuifw
-import e32
-import os
-import sys
+import appuifw, e32, os, sys
 import os.path
 import pastebin_python as P
 import powlite_fm
@@ -18,6 +15,7 @@ expiry_list = [u"Never",u"10 Minutes",u"1 Hour",u"1 Day",u"1 Month"]
 privacy_list  = [u"Public",u"Unlisted",u"Private"]
 format_list = [u"Python",u"PyS60",u'Text',u"HTML"]
 manager = powlite_fm.manager()
+
 class sets(object):
     def __init__(self):
         self.APIKEY = ""
