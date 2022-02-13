@@ -6,6 +6,7 @@ appuifw.app.title = u"Py SysInfo "
 dev = "gauravssnl"
 ru = lambda txt : str(txt).decode('utf-8','ignore')
 lock = e32.Ao_lock()
+
 def app():
     appuifw.app.exit_key_handler = lock.signal
     active_profile = sysinfo.active_profile()
